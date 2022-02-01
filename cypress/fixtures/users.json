@@ -1,0 +1,7 @@
+{
+    "usernames": {
+        "standard": "standard_user",
+        "problem": "problem_user"
+    },
+    "password": "secret_sauce"
+}
