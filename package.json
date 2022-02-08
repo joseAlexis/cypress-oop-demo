@@ -23,5 +23,8 @@
   "homepage": "https://github.com/joseAlexis/cypress-node-oop#readme",
   "dependencies": {
     "cypress": "^9.4.1"
+  },
+  "devDependencies": {
+    "cypress-localstorage-commands": "^1.6.1"
   }
 }
