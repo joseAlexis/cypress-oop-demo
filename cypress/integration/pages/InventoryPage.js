@@ -1,62 +1,24 @@
 /// <reference types="Cypress" />
 
-import ItemPage from "./ItemPage";
-const BasePage = require("./BasePage");
+import BasePage from "./BasePage";
 
 class InventoryPage extends BasePage {
-    lblHeader = `span.title`;
-    mdlItems = `div.inventory_item`;
-
-    getHeader() {
-        return cy.get(this.lblHeader);
+    elements = {
+        lblHeader: () => cy.get(`span.title`),
+        mdlItems: () => cy.get(`div.inventory_item`)
     }
 
     clickOnItem() {
-        cy.get(this.mdlItems).then(items => {
+        this.elements.mdlItems().then(items => {
             const random = Math.floor(Math.random() * items.length);
             cy.wrap(items[random]).find('div.inventory_item_label > a').click();
-           
+
         });
-        return new ItemPage();
     }
 
-    // addItemToCart(itemsToAdd) {
-    //     const itemsList = [];
-    //     let itemsAdded = 0;
-
-    //     const item = new Item();
-
-
-    //         while (itemsList.length < itemsToAdd) {
-    //            
-
-    //             if(itemsList.find(randomItem))
-    //             item.id = randomItem;
-
-    //             cy.wrap(items[item.id]).find("div.inventory_item_name").invoke("text").then(itemName => {
-    //                 item.name = itemName;
-    //             });
-
-    //             cy.wrap(items[item.id]).find("div.inventory_item_desc").invoke("text").then(itemDescription => {
-    //                 item.description = itemDescription;
-    //             });
-
-    //             cy.wrap(items[item.id]).find("div.inventory_item_price").invoke("text").then(itemPrice => {
-    //                 item.price = itemPrice;
-    //             });
-
-    //             itemsList.push(item);
-    //             cy.wrap(items[item.id]).find(`button.btn_inventory`).click();                
-
-    //         }
-
-
-    //     return item;
-    // }
-
-    navigateToCart() {
-        return super.navigateToCart();
+    getHeader() {
+        return this.elements.lblHeader();
     }
 }
 
-export default InventoryPage;
+module.exports = new InventoryPage();

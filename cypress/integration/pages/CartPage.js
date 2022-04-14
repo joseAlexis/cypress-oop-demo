@@ -1,26 +1,27 @@
-
-
 class CartPage {
-    lnkShoopingCart = `a.shopping_cart_link`;
-    mdlCartItems = `div.cart_item`
-    lblIventoryName = `div.inventory_item_name`;
-    lblInventoryDescription = `div.inventory_item_desc`;
-    lblInventoryPrice = `div.inventory_item_price`;
-
-    // navigateToCart() {
-    //     cy.get(this.lnkShoopingCart).click();
-    // }
-
-    getItemName() {
-        return cy.get(this.lblIventoryName);
+    elements = {
+        lnkShoopingCart: () => cy.get(`a.shopping_cart_link`),
+        listCartItems: () => cy.get(`div.cart_item`),
+        btnCheckout: () => cy.get('button[data-test="checkout"]')
     }
 
-    getItemDescription() {
-        return cy.get(this.lblInventoryDescription);
+    getItemDetails() {
+        let itemList = [];
+
+        this.elements.listCartItems().each(item => {
+            itemList.push({
+                name: item.find('div.inventory_item_name').text(),
+                description: item.find('div.inventory_item_desc').text(),
+                price: item.find('div.inventory_item_price').text()
+            });
+        });
+
+        return itemList;
     }
 
-    getItemPrice() {
-        return cy.get(this.lblInventoryPrice);
+    clickCheckout() {
+        this.elements.btnCheckout().click();
     }
-} 
-export default CartPage;
+}
+
+module.exports = new CartPage();

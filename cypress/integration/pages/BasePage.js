@@ -1,12 +1,10 @@
-import CartPage from "./CartPage";
-
 class BasePage {
-    btnBurgerMenu = `button#react-burger-menu-btn`;
-    lnkShoopingCart = `a.shopping_cart_link`;
+    btnBurgerMenu = () => cy.get(`button#react-burger-menu-btn`);
+    lnkShoopingCart = () => cy.get(`a.shopping_cart_link`);
+    secondaryHeader = () => cy.get('div.header_secondary_container > span.title')
 
     navigateToCart() {
-        cy.get(this.lnkShoopingCart).click();
-        return new CartPage();
+        this.lnkShoopingCart().click();
     }
 }
 

@@ -1,40 +1,41 @@
+import BasePage from "./BasePage";
 import Item from "../model/Item";
-const BasePage = require("./BasePage");
 
 class ItemPage extends BasePage {
-    imgProduct = `img.inventory_details_img`;
-    lblName = `div.inventory_details_name`;
-    lblDescription = `div.inventory_details_desc`;
-    lblPrice = `div.inventory_details_price`;
-    btnAddToCart = `button.btn_inventory`
+    elements = {
+        imgProduct: () => cy.get(`img.inventory_details_img`),
+        lblName: () => cy.get(`div.inventory_details_name`),
+        lblDescription: () => cy.get(`div.inventory_details_desc`),
+        lblPrice: () => cy.get(`div.inventory_details_price`),
+        btnAddToCart: () => cy.get(`button.btn_inventory`)
+    }
 
     getImage() {
-        return cy.get(this.imgProduct);
+        return this.elements.imgProduct();
     }
 
     addToCart() {
-        
         const item = new Item();
 
-        cy.get(this.lblName).invoke("text").then(text => {
+        this.elements.lblName().invoke("text").then(text => {
             item.name = text;
         });
 
-        cy.get(this.lblDescription).invoke("text").then(text => {
+        this.elements.lblDescription().invoke("text").then(text => {
             item.desription = text;
         });
 
-        cy.get(this.lblPrice).invoke("text").then(text => {
+        this.elements.lblPrice().invoke("text").then(text => {
             item.price = text;
         });
 
-        cy.get(this.btnAddToCart).click();
+        this.elements.btnAddToCart().click();
 
         return item;
     }
 
     getButton() {
-        return cy.get(this.btnAddToCart);
+        return this.elements.btnAddToCart();
     }
 }
-export default ItemPage;
+module.exports = new ItemPage();
