@@ -17,7 +17,7 @@ describe("Login Page Suite", () => {
     before(function () {
         cy.fixture("users").as("users");
         cy.clearLocalStorageSnapshot();
-        cy.task('getCustomerInfo').then(function(customer){
+        cy.task('getCustomerInfo').then(function (customer) {
             this.customer = customer;
         })
     });
@@ -56,23 +56,26 @@ describe("Login Page Suite", () => {
 
         it("Should navigate to the cart and validate the elements in there", function () {
             ItemPage.navigateToCart();
-
-            CartPage.getItemName().then(text => {
-                expect(text).to.be.eq(item.name)
-            });
-            CartPage.getItemDescription().then(text => {
-                expect(text).to.be.eq(item.description)
-            });
-            CartPage.getItemPrice().then(text => {
-                expect(text).to.be.eq(item.price)
-            });
+            cy.validateCartItems(item);
         });
 
-        it('print customer info', function() {
+        it('Should continue to checkout', function () {
             CartPage.clickCheckout();
-            CheckoutPage.elements.txtFirstName().then(function() {
-                console.log(this.customer);
-            });
-        })
+            CheckoutPage.secondaryHeader().should('be.visible').and('have.text', 'Checkout: Your Information')
+        });
+
+        it('Should complete "Your Information" page', function () {
+            CheckoutPage.fillYourInformation(this.customer);
+            CheckoutPage.clickContinueStepOne();
+            CheckoutPage.secondaryHeader().should('be.visible').and('have.text', 'Checkout: Overview')
+        });
+
+        it('Should confirm and complete the order', function () {
+            cy.validateCartItems(item);
+            CheckoutPage.elements.summaryInfo().should('be.visible');
+            CheckoutPage.clickFinish();
+            CheckoutPage.elements.confirmationHeader().should('be.visible').and('have.text', 'THANK YOU FOR YOUR ORDER');
+            CheckoutPage.elements.confirmationText().should('be.visible').and('have.text', 'Your order has been dispatched, and will arrive just as fast as the pony can get there!')
+        });
     });
 });

@@ -1,23 +1,22 @@
 class CartPage {
     elements = {
         lnkShoopingCart: () => cy.get(`a.shopping_cart_link`),
-        mdlCartItems: () => cy.get(`div.cart_item`),
-        lblIventoryName: () => cy.get(`div.inventory_item_name`),
-        lblInventoryDescription: () => cy.get(`div.inventory_item_desc`),
-        lblInventoryPrice: () => cy.get(`div.inventory_item_price`),
+        listCartItems: () => cy.get(`div.cart_item`),
         btnCheckout: () => cy.get('button[data-test="checkout"]')
     }
 
-    getItemName() {
-        return this.elements.lblIventoryName().invoke('text');
-    }
+    getItemDetails() {
+        let itemList = [];
 
-    getItemDescription() {
-        return this.elements.lblInventoryDescription().invoke('text');
-    }
+        this.elements.listCartItems().each(item => {
+            itemList.push({
+                name: item.find('div.inventory_item_name').text(),
+                description: item.find('div.inventory_item_desc').text(),
+                price: item.find('div.inventory_item_price').text()
+            });
+        });
 
-    getItemPrice() {
-        return this.elements.lblInventoryPrice().invoke('text');
+        return itemList;
     }
 
     clickCheckout() {
