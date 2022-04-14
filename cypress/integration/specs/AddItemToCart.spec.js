@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import CartPage from "../pages/CartPage";
 import InventoryPage from "../pages/InventoryPage";
 import ItemPage from "../pages/ItemPage";
+import CheckoutPage from "../pages/CheckoutPage";
 
 Cypress.Cookies.defaults({
     preserve: "session-username"
@@ -16,6 +17,9 @@ describe("Login Page Suite", () => {
     before(function () {
         cy.fixture("users").as("users");
         cy.clearLocalStorageSnapshot();
+        cy.task('getCustomerInfo').then(function(customer){
+            this.customer = customer;
+        })
     });
 
     beforeEach(() => {
@@ -63,5 +67,12 @@ describe("Login Page Suite", () => {
                 expect(text).to.be.eq(item.price)
             });
         });
+
+        it('print customer info', function() {
+            CartPage.clickCheckout();
+            CheckoutPage.elements.txtFirstName().then(function() {
+                console.log(this.customer);
+            });
+        })
     });
 });

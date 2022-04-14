@@ -4,7 +4,8 @@ class CartPage {
         mdlCartItems: () => cy.get(`div.cart_item`),
         lblIventoryName: () => cy.get(`div.inventory_item_name`),
         lblInventoryDescription: () => cy.get(`div.inventory_item_desc`),
-        lblInventoryPrice: () => cy.get(`div.inventory_item_price`)
+        lblInventoryPrice: () => cy.get(`div.inventory_item_price`),
+        btnCheckout: () => cy.get('button[data-test="checkout"]')
     }
 
     getItemName() {
@@ -17,6 +18,10 @@ class CartPage {
 
     getItemPrice() {
         return this.elements.lblInventoryPrice().invoke('text');
+    }
+
+    clickCheckout() {
+        this.elements.btnCheckout().click();
     }
 }
 
