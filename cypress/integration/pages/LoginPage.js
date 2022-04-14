@@ -1,48 +1,37 @@
 /// <reference types="Cypress" />
-import InventoryPage from "./InventoryPage";
 
 class LoginPage {
-    frmLogin = `div.login_wrapper`;
-    txtUserName = `input[data-test="username"]`;
-    txtPassword = `input[data-test="password"]`;
-    btnLogin = `input[data-test="login-button"]`;
+    elements = {
+        frmLogin: () => cy.get(`div.login_wrapper`),
+        txtUserName: () => cy.get(`input[data-test="username"]`),
+        txtPassword: () => cy.get(`input[data-test="password"]`),
+        btnLogin: () => cy.get(`input[data-test="login-button"]`)
+    }
+
 
     visit() {
         cy.visit("/#");
     }
 
     typeUsername(username) {
-        cy.get(this.txtUserName)
+        this.elements.txtUserName()
             .clear()
             .type(username);
     }
 
     typePassword(password) {
-        cy.get(this.txtPassword)
+        this.elements.txtPassword()
             .clear()
             .type(password);
     }
 
     clickLogin() {
-        cy.get(this.btnLogin).click();
-        return new InventoryPage();
+        this.elements.btnLogin().click();
     }
 
     getLoginForm() {
-        return cy.get(this.frmLogin);
-    }
-
-    get username() {
-        return cy.get(this.txtUserName);
-    }
-
-    get password() {
-        return cy.get(this.txtPassword);
-    }
-
-    get loginButton() {
-        return cy.get(this.btnLogin)
+        return this.elements.frmLogin();
     }
 }
-export default LoginPage;
-// module.exports = new LoginPage();
+
+module.exports = new LoginPage();

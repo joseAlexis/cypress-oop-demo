@@ -1,26 +1,23 @@
-
-
 class CartPage {
-    lnkShoopingCart = `a.shopping_cart_link`;
-    mdlCartItems = `div.cart_item`
-    lblIventoryName = `div.inventory_item_name`;
-    lblInventoryDescription = `div.inventory_item_desc`;
-    lblInventoryPrice = `div.inventory_item_price`;
-
-    // navigateToCart() {
-    //     cy.get(this.lnkShoopingCart).click();
-    // }
+    elements = {
+        lnkShoopingCart: () => cy.get(`a.shopping_cart_link`),
+        mdlCartItems: () => cy.get(`div.cart_item`),
+        lblIventoryName: () => cy.get(`div.inventory_item_name`),
+        lblInventoryDescription: () => cy.get(`div.inventory_item_desc`),
+        lblInventoryPrice: () => cy.get(`div.inventory_item_price`)
+    }
 
     getItemName() {
-        return cy.get(this.lblIventoryName);
+        return this.elements.lblIventoryName().invoke('text');
     }
 
     getItemDescription() {
-        return cy.get(this.lblInventoryDescription);
+        return this.elements.lblInventoryDescription().invoke('text');
     }
 
     getItemPrice() {
-        return cy.get(this.lblInventoryPrice);
+        return this.elements.lblInventoryPrice().invoke('text');
     }
-} 
-export default CartPage;
+}
+
+module.exports = new CartPage();

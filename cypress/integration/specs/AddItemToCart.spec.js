@@ -2,6 +2,8 @@
 
 import LoginPage from "../pages/LoginPage";
 import CartPage from "../pages/CartPage";
+import InventoryPage from "../pages/InventoryPage";
+import ItemPage from "../pages/ItemPage";
 
 Cypress.Cookies.defaults({
     preserve: "session-username"
@@ -9,10 +11,6 @@ Cypress.Cookies.defaults({
 
 describe("Login Page Suite", () => {
 
-    const loginPage = new LoginPage();
-    let inventoryPage = undefined;
-    let itemPage = undefined;
-    let cartPage = undefined;
     let item = undefined;
 
     before(function () {
@@ -31,38 +29,39 @@ describe("Login Page Suite", () => {
     describe("TC-0001 | Test login", () => {
 
         it("Should navigate to the login page", function () {
-            loginPage.visit();
-            loginPage.getLoginForm().should("be.visible");
+            LoginPage.visit();
+            LoginPage.getLoginForm().should("be.visible");
         });
 
         it("Should enter credentials and click on login", function () {
-            loginPage.typeUsername(this.users.usernames.standard);
-            loginPage.typePassword(this.users.password);
-            inventoryPage = loginPage.clickLogin();
-            inventoryPage.getHeader().should("be.visible").and("have.text", "Products");
+            LoginPage.typeUsername(this.users.usernames.standard);
+            LoginPage.typePassword(this.users.password);
+            LoginPage.clickLogin();
+            InventoryPage.getHeader().should("be.visible").and("have.text", "Products");
         });
 
         it("Should select an item", function () {
-            itemPage = inventoryPage.clickOnItem();
-            itemPage.getImage().should("be.visible");
+            InventoryPage.clickOnItem();
+            ItemPage.getImage().should("be.visible");
         });
 
-        it("Should add item into the cart", function () {            
-            item = itemPage.addToCart();            
-            itemPage.getButton().should("have.text", "Remove")
+        it("Should add item into the cart", function () {
+            item = ItemPage.addToCart();
+            ItemPage.getButton().should("have.text", "Remove")
         });
 
-        it("Should navigate to the cart and validate the elements in there", function () {            
-            cartPage = itemPage.navigateToCart();
-            cartPage.getItemName().invoke("text").then(text => {
+        it("Should navigate to the cart and validate the elements in there", function () {
+            ItemPage.navigateToCart();
+
+            CartPage.getItemName().then(text => {
                 expect(text).to.be.eq(item.name)
-            });            
-            cartPage.getItemDescription().invoke("text").then(text => {
+            });
+            CartPage.getItemDescription().then(text => {
                 expect(text).to.be.eq(item.description)
-            });           
-            cartPage.getItemPrice().invoke("text").then(text => {
+            });
+            CartPage.getItemPrice().then(text => {
                 expect(text).to.be.eq(item.price)
-            });   
+            });
         });
     });
 });
