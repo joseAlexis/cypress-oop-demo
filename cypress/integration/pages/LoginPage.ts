@@ -33,4 +33,3 @@ class LoginPage {
 }
 
 export const loginPage = new LoginPage();
-// module.exports = new LoginPage();

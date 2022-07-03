@@ -1,4 +1,3 @@
-import { loginPage } from "../pages/LoginPage";
 import { cartPage } from "../pages/CartPage";
 import { inventoryPage } from "../pages/InventoryPage";
 import { itemPage } from "../pages/ItemPage";
@@ -15,11 +14,10 @@ describe("Login Page Suite", () => {
     let item = new Item();
 
     before(function () {
-        cy.fixture("users").as("users");
         cy.clearLocalStorageSnapshot();
-        cy.task('getCustomerInfo').then(function (customer) {
-            this.customer = customer;
-        })
+        cy.fixture("users").then(users => {
+            cy.appLogin(users.usernames.standard, users.password);
+        });
     });
 
     beforeEach(() => {
@@ -31,19 +29,6 @@ describe("Login Page Suite", () => {
     });
 
     describe("TC-0001 | Test login", () => {
-
-        it("Should navigate to the login page", function () {
-            loginPage.visit();
-            loginPage.getLoginForm().should("be.visible");
-        });
-
-        it("Should enter credentials and click on login", function () {
-            loginPage.typeUsername(this.users.usernames.standard);
-            loginPage.typePassword(this.users.password);
-            loginPage.clickLogin();
-            inventoryPage.getHeader().should("be.visible").and("have.text", "Products");
-        });
-
         it("Should select an item", function () {
             inventoryPage.clickOnItem();
             itemPage.getImage().should("be.visible");
@@ -65,7 +50,9 @@ describe("Login Page Suite", () => {
         });
 
         it('Should complete "Your Information" page', function () {
-            checkoutPage.fillYourInformation(this.customer);
+            cy.task('getCustomerInfo').then(function (customer) {
+                checkoutPage.fillYourInformation(customer);
+            });
             checkoutPage.clickContinueStepOne();
             checkoutPage.secondaryHeader().should('be.visible').and('have.text', 'Checkout: Overview')
         });

@@ -35,5 +35,3 @@ class CheckoutPage extends BasePage {
 }
 
 export const checkoutPage = new CheckoutPage();
-
-// module.exports = new CheckoutPage();

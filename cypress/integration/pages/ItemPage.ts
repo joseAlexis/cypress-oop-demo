@@ -39,4 +39,3 @@ class ItemPage extends BasePage {
     }
 }
 export const itemPage = new ItemPage();
-// module.exports = new ItemPage();

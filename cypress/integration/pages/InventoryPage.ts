@@ -20,4 +20,3 @@ class InventoryPage extends BasePage {
 }
 
 export const inventoryPage = new InventoryPage();
-// module.exports = new InventoryPage();
