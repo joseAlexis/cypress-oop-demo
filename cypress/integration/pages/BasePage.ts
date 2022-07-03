@@ -7,6 +7,3 @@ export default class BasePage {
         this.lnkShoopingCart().click();
     }
 }
-// const export default basePage = new BasePage()
-
-// module.exports = BasePage;
