@@ -1,7 +1,8 @@
-const BasePage = require("./BasePage");
+// const BasePage = require("./BasePage");
+import BasePage from "./BasePage";
 
-class CheckoutPage extends BasePage{
-    
+class CheckoutPage extends BasePage {
+
     elements = {
         // Step 1
         txtFirstName: () => cy.get('input[data-test="firstName"]'),
@@ -33,4 +34,6 @@ class CheckoutPage extends BasePage{
     }
 }
 
-module.exports = new CheckoutPage();
+export const checkoutPage = new CheckoutPage();
+
+// module.exports = new CheckoutPage();

@@ -1,8 +1,14 @@
 class Item {
-    _id = 0;
-    _name = ``;
-    _price = ``;
-    _description = ``;
+
+    // private _id: number;
+    // private _name: string;
+    // private _price: string;
+    // private _description: string
+
+    // constructor() { };
+
+    constructor(private _id?:number, private _name?:string, private _price?:string, private _description?:string) {
+    }
 
     get id() {
         return this._id;

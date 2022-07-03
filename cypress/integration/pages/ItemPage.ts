@@ -14,8 +14,8 @@ class ItemPage extends BasePage {
         return this.elements.imgProduct();
     }
 
-    addToCart() {
-        const item = new Item();
+    addToCart(item: Item) {
+        // const item = new Item();
 
         this.elements.lblName().invoke("text").then(text => {
             item.name = text;
@@ -38,4 +38,5 @@ class ItemPage extends BasePage {
         return this.elements.btnAddToCart();
     }
 }
-module.exports = new ItemPage();
+export const itemPage = new ItemPage();
+// module.exports = new ItemPage();

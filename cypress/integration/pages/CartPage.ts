@@ -24,4 +24,6 @@ class CartPage {
     }
 }
 
-module.exports = new CartPage();
+export const cartPage = new CartPage()
+
+// module.exports = new CartPage();

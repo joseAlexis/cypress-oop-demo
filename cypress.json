@@ -1,6 +1,6 @@
 {
     "baseUrl": "https://www.saucedemo.com",
     "watchForFileChanges": false,
-    "testFiles": "**/*.spec.js",
+    "testFiles": "**/*.spec.ts",
     "chromeWebSecurity": false
 }
