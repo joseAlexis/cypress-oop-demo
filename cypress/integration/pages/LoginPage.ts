@@ -1,5 +1,3 @@
-/// <reference types="Cypress" />
-
 class LoginPage {
     elements = {
         frmLogin: () => cy.get(`div.login_wrapper`),
@@ -34,4 +32,5 @@ class LoginPage {
     }
 }
 
-module.exports = new LoginPage();
+export const loginPage = new LoginPage();
+// module.exports = new LoginPage();

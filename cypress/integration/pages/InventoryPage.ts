@@ -1,5 +1,3 @@
-/// <reference types="Cypress" />
-
 import BasePage from "./BasePage";
 
 class InventoryPage extends BasePage {
@@ -21,4 +19,5 @@ class InventoryPage extends BasePage {
     }
 }
 
-module.exports = new InventoryPage();
+export const inventoryPage = new InventoryPage();
+// module.exports = new InventoryPage();
