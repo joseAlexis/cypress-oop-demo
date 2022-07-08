@@ -1,4 +1,7 @@
 # cypress-node-oop
+
+[![joseAlexis](https://circleci.com/gh/joseAlexis/cypress-node-oop.svg?style=svg)](https://app.circleci.com/pipelines/github/joseAlexis/cypress-node-oop)
+
 Basic Cyress Project that uses [Page Object Model](https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/) and Javascript.
 
 ## Resources
