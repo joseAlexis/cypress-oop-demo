@@ -6,6 +6,7 @@ import { faker } from "@faker-js/faker";
 faker.setLocale('en');
 
 export default defineConfig({
+  projectId: 'j1kded',
     e2e: {
         baseUrl: "https://www.saucedemo.com",
         watchForFileChanges: false,
