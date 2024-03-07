@@ -1,7 +1,7 @@
 {
     "usernames": {
         "standard": "standard_user",
-        "problem": "problem_user"
+        "locked_out": "locked_out_user"
     },
     "password": "secret_sauce"
 }
