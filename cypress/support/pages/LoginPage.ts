@@ -1,6 +1,6 @@
 class LoginPage {
   elements = {
-    frmLogin: () => cy.get(`div.login_wrapper`),
+    loginForm: () => cy.get(`div.login_wrapper`),
     txtUserName: () => cy.get(`input[data-test="username"]`),
     txtPassword: () => cy.get(`input[data-test="password"]`),
     btnLogin: () => cy.get(`input[data-test="login-button"]`),
@@ -21,10 +21,6 @@ class LoginPage {
 
   clickLogin() {
     this.elements.btnLogin().click();
-  }
-
-  getLoginForm() {
-    return this.elements.frmLogin();
   }
 }
 

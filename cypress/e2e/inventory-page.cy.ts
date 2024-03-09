@@ -1,4 +1,5 @@
 import { inventoryPage } from "../support/pages/InventoryPage";
+import { itemPage } from "../support/pages/ItemPage";
 
 describe("Inventory page", () => {
   beforeEach(function () {
@@ -6,10 +7,14 @@ describe("Inventory page", () => {
   });
 
   it("Should add an item to the cart", () => {
-    inventoryPage.clickOnItem();
+    const item = "Sauce Labs Bolt T-Shirt";
+    inventoryPage.addToCart(item);
+    inventoryPage.getCartBadge().should("have.text", 1);
   });
 
-  it("Should do something else", () => {
-    inventoryPage.navigateToCart();
+  it("Should open a product", () => {
+    const itemName = "Sauce Labs Bike Light";
+    inventoryPage.navigateToItem(itemName);
+    itemPage.elements.name().should("be.visible").and("have.text", itemName);
   });
 });

@@ -36,7 +36,7 @@ Cypress.Commands.add("validateCartItems", (itemDTO: Item) => {
 
 Cypress.Commands.add("appLogin", (username: string, password: string) => {
   loginPage.visit();
-  loginPage.getLoginForm().should("be.visible");
+  loginPage.elements.loginForm().should("be.visible");
 
   loginPage.typeUsername(username);
   loginPage.typePassword(password);

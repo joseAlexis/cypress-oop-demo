@@ -4,7 +4,7 @@ import Item from "../model/Item";
 class ItemPage extends BasePage {
   elements = {
     imgProduct: () => cy.get(`img.inventory_details_img`),
-    lblName: () => cy.get(`div.inventory_details_name`),
+    name: () => cy.get(`div.inventory_details_name`),
     lblDescription: () => cy.get(`div.inventory_details_desc`),
     lblPrice: () => cy.get(`div.inventory_details_price`),
     btnAddToCart: () => cy.get(`button.btn_inventory`),
@@ -18,7 +18,7 @@ class ItemPage extends BasePage {
     // const item = new Item();
 
     this.elements
-      .lblName()
+      .name()
       .invoke("text")
       .then((text) => {
         item.name = text;
