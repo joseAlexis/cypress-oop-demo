@@ -6,11 +6,14 @@ Basic Cyress Project that uses [Page Object Model](https://www.selenium.dev/docu
 Integrated with the [Cypress Dashboard](https://dashboard.cypress.io/projects/j1kded/runs).
 
 ## Resources
+
 Site: [SauceDemo](https://www.saucedemo.com).
 
 ## Additional Dependencies
+
 - [FakerJS](https://www.npmjs.com/package/@faker-js/faker)
 - [Cypress LocalStorage](https://www.npmjs.com/package/cypress-localstorage-commands)
 
 ## Author
+
 Jose A. Bolanos B.

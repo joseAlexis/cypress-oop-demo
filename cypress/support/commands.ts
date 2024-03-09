@@ -5,6 +5,7 @@ import Item from "./model/Item";
 import { loginPage } from "./pages/LoginPage";
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
     interface Chainable {
       /**
