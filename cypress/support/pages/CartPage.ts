@@ -1,22 +1,24 @@
 class CartPage {
   elements = {
     lnkShoopingCart: () => cy.get(`a.shopping_cart_link`),
-    listCartItems: () => cy.get(`div.cart_item`),
+    items: () => cy.get(`div.cart_item`),
     btnCheckout: () => cy.get('button[data-test="checkout"]'),
   };
 
-  getItemDetails() {
-    const itemList = [];
+  getItemQuantity(index: number) {
+    return this.elements.items().eq(index).find(`.cart_quantity`);
+  }
 
-    this.elements.listCartItems().each((item) => {
-      itemList.push({
-        name: item.find("div.inventory_item_name").text(),
-        description: item.find("div.inventory_item_desc").text(),
-        price: item.find("div.inventory_item_price").text(),
-      });
-    });
+  getItemName(index: number) {
+    return this.elements.items().eq(index).find(`.inventory_item_name`);
+  }
 
-    return itemList;
+  removeItem(index: number) {
+    return this.elements
+      .items()
+      .eq(index)
+      .find(`[data-test*="remove-"]`)
+      .click();
   }
 
   clickCheckout() {

@@ -3,11 +3,9 @@ version: 2.1
 orbs:
   # import Cypress orb by specifying an exact version x.y.z
   # or the latest version 1.x.x using "@1" syntax
-  cypress: cypress-io/cypress@2
+  cypress: cypress-io/cypress@3.3.1
 workflows:
-  build:
+  test:
     jobs:
-      # first get the source code and install npm dependencies
-      - cypress/install
       - cypress/run:
-          record: true
+          cypress-command: npx cypress run --record

@@ -1,3 +1,4 @@
+import { cartPage } from "../support/pages/CartPage";
 import { inventoryPage } from "../support/pages/InventoryPage";
 import { itemPage } from "../support/pages/ItemPage";
 
@@ -16,5 +17,13 @@ describe("Inventory page", () => {
     const itemName = "Sauce Labs Bike Light";
     inventoryPage.navigateToItem(itemName);
     itemPage.elements.name().should("be.visible").and("have.text", itemName);
+  });
+
+  it("Should navigate to your cart", () => {
+    const itemName = "Sauce Labs Onesie";
+    inventoryPage.addToCart(itemName);
+    inventoryPage.navigateToCart();
+    cartPage.getItemQuantity(0).should("be.visible").and("have.text", "1");
+    cartPage.getItemName(0).should("be.visible").and("have.text", itemName);
   });
 });
