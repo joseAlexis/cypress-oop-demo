@@ -35,7 +35,7 @@ class InventoryPage {
     return this.elements.lblHeader();
   }
 
-  openCart() {
+  navigateToCart() {
     this.elements.cart().click();
   }
 }
