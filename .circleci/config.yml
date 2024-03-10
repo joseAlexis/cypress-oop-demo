@@ -5,9 +5,7 @@ orbs:
   # or the latest version 1.x.x using "@1" syntax
   cypress: cypress-io/cypress@3.3.1
 workflows:
-  build:
+  test:
     jobs:
-      # first get the source code and install npm dependencies
-      - cypress/install
       - cypress/run:
           record: true
