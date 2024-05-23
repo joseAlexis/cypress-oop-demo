@@ -9,10 +9,6 @@ Integrated with the [Cypress Dashboard](https://dashboard.cypress.io/projects/j1
 
 Site: [SauceDemo](https://www.saucedemo.com).
 
-## Additional Dependencies
-
-- [FakerJS](https://www.npmjs.com/package/@faker-js/faker)
-
 ## Author
 
 Jose A. Bolanos B.
