@@ -16,7 +16,7 @@ class LoginPage {
   }
 
   typePassword(password) {
-    this.elements.txtPassword().clear().type(password);
+    this.elements.txtPassword().clear().type(password, { log: false });
   }
 
   clickLogin() {
